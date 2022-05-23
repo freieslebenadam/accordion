@@ -34,7 +34,7 @@ const createDOMElement = (tag, classNames = null, text = null) => {
 
 // Accordion item generation
 const generateAccordionItem = (title, description) => {
-  const item = createDOMElement("article", "accordion-item");
+  const item = createDOMElement("div", "accordion-item");
 
   const itemHeader = createDOMElement("header");
   const itemBody = createDOMElement("div", "accordion-item-body");
@@ -50,3 +50,21 @@ const generateAccordionItem = (title, description) => {
 
   return item;
 };
+
+// Full accordion component generation
+const generateAccordion = (data) => {
+  const accordion = createDOMElement("article", "accordion");
+
+  const accordionItems = data.map(item => generateAccordionItem(item.title, item.description));
+
+  accordionItems.forEach(accordionItem => {
+    accordion.append(accordionItem);
+  });
+
+  return accordion;
+}
+
+// Mount and render accordion
+const mountElement = document.querySelector("[data-accordion]");
+const accordion = generateAccordion(data);
+mountElement.append(accordion);
