@@ -31,3 +31,22 @@ const createDOMElement = (tag, classNames = null, text = null) => {
 
   return element;
 };
+
+// Accordion item generation
+const generateAccordionItem = (title, description) => {
+  const item = createDOMElement("article", "accordion-item");
+
+  const itemHeader = createDOMElement("header");
+  const itemBody = createDOMElement("div", "accordion-item-body");
+
+  const itemHeaderTitle = createDOMElement("h2", null, title);
+  const itemBodyContent = createDOMElement("p", null, description);
+
+  itemHeader.append(itemHeaderTitle);
+  itemBody.append(itemBodyContent);
+
+  item.append(itemHeader);
+  item.append(itemBody);
+
+  return item;
+};
