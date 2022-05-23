@@ -74,11 +74,10 @@ const accordions = document.querySelectorAll(".accordion");
 
 // Open accordion item
 const openAccordionItem = (accordionItem) => {
-  const header = accordionItem.querySelector("header");
   const body = accordionItem.querySelector(".accordion-item-body");
 
   accordionItem.classList.add("active");
-  body.style.maxHeight = `${header.scrollHeight}px`;
+  body.style.maxHeight = `calc(${body.scrollHeight}px + 2rem)`;
 };
 
 // Close accordion item
