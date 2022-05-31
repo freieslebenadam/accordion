@@ -6,14 +6,14 @@ const data = [
 ];
 
 // General function for creating DOM elements
-const createDOMElement = (tag, classNames = null, text = null) => {
+const createDOMElement = (tag, classNames, text) => {
   const element = document.createElement(tag);
 
   // Add classNames to this element
   if (classNames) {
     if (typeof classNames === "string") {
       element.classList.add(classNames);
-    } else if (typeof classNames === "array") {
+    } else if (Array.isArray(classNames)) {
       classNames.forEach(className => {
         if (typeof className === "string") {
           element.classList.add(className);
@@ -23,10 +23,8 @@ const createDOMElement = (tag, classNames = null, text = null) => {
   }
 
   // Add innerText to this element
-  if (text) {
-    if (typeof text === "string") {
-      element.innerText = text;
-    }
+  if (text && typeof text === "string") {
+    element.innerText = text;
   }
 
   return element;
