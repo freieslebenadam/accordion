@@ -92,6 +92,8 @@ const generateAccordion = (data) => {
 }
 
 // Mount and render accordion
-const mountElement = document.querySelector("[data-accordion]");
-const accordion = generateAccordion(data);
-mountElement.append(accordion);
+window.onload = () => {
+  const mountElement = document.querySelector("[data-accordion]");
+  const accordion = generateAccordion(data);
+  mountElement.append(accordion);
+};
