@@ -43,7 +43,7 @@ const closeAccordionItem = accordionItem => {
   const body = accordionItem.querySelector(".accordion-item-body");
 
   accordionItem.classList.remove("active");
-  body.style.maxHeight = null;
+  body.style.maxHeight = 0;
 }
 
 // Accordion item generation
@@ -80,7 +80,7 @@ const generateAccordionItem = (title, description) => {
 };
 
 // Full accordion component generation
-const generateAccordion = (data) => {
+const generateAccordion = data => {
   const accordion = createDOMElement("article", "accordion");
 
   data.forEach(item => {
