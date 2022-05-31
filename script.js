@@ -30,6 +30,22 @@ const createDOMElement = (tag, classNames, text) => {
   return element;
 };
 
+// Open accordion item
+const openAccordionItem = accordionItem => {
+  const body = accordionItem.querySelector(".accordion-item-body");
+
+  accordionItem.classList.add("active");
+  body.style.maxHeight = `calc(${body.scrollHeight}px + 2rem)`;
+};
+
+// Close accordion item
+const closeAccordionItem = accordionItem => {
+  const body = accordionItem.querySelector(".accordion-item-body");
+
+  accordionItem.classList.remove("active");
+  body.style.maxHeight = null;
+}
+
 // Accordion item generation
 const generateAccordionItem = (title, description) => {
   const item = createDOMElement("div", "accordion-item");
@@ -45,6 +61,23 @@ const generateAccordionItem = (title, description) => {
 
   item.append(itemHeader);
   item.append(itemBody);
+
+  // Header click functionality
+  itemHeader.addEventListener("click", () => {
+    if (itemBody.style.maxHeight) {
+      closeAccordionItem(item);
+    } else {
+      const allAccordionItems = document.querySelectorAll(".accordion-item");
+      
+      // Close all accordion items
+      allAccordionItems.forEach(accordionItem => {
+        closeAccordionItem(accordionItem);
+      });
+
+      // Open only this accordion item
+      openAccordionItem(item);
+    }
+  });
 
   return item;
 };
@@ -65,47 +98,3 @@ const generateAccordion = (data) => {
 const mountElement = document.querySelector("[data-accordion]");
 const accordion = generateAccordion(data);
 mountElement.append(accordion);
-
-// All accordions functionality (in case there's multiple)
-const accordions = document.querySelectorAll(".accordion");
-
-// Open accordion item
-const openAccordionItem = accordionItem => {
-  const body = accordionItem.querySelector(".accordion-item-body");
-
-  accordionItem.classList.add("active");
-  body.style.maxHeight = `calc(${body.scrollHeight}px + 2rem)`;
-};
-
-// Close accordion item
-const closeAccordionItem = accordionItem => {
-  const body = accordionItem.querySelector(".accordion-item-body");
-
-  accordionItem.classList.remove("active");
-  body.style.maxHeight = null;
-}
-
-// Apply to each accordion
-accordions.forEach(accordion => {
-  const accordionItems = accordion.querySelectorAll(".accordion-item");
-
-  accordionItems.forEach(accordionItem => {
-    const header = accordionItem.querySelector("header");
-    const body = accordionItem.querySelector(".accordion-item-body");
-
-    // Click event listener
-    header.addEventListener("click", () => {
-      if (body.style.maxHeight) {
-        closeAccordionItem(accordionItem);
-      } else {
-        // Close all accordion items
-        accordionItems.forEach(accordionItem => {
-          closeAccordionItem(accordionItem);
-        });
-
-        // Open only this accordion item
-        openAccordionItem(accordionItem)
-      }
-    });
-  });
-});
