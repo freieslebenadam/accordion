@@ -53,9 +53,8 @@ const generateAccordionItem = (title, description) => {
 const generateAccordion = (data) => {
   const accordion = createDOMElement("article", "accordion");
 
-  const accordionItems = data.map(item => generateAccordionItem(item.title, item.description));
-
-  accordionItems.forEach(accordionItem => {
+  data.forEach(item => {
+    const accordionItem = generateAccordionItem(item.title, item.description);
     accordion.append(accordionItem);
   });
 
