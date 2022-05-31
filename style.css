@@ -1,6 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
+  --font: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+  --dark: #3b3b3b;
+  --light: #e5e5e5;
+  --white: #fff;
+
   --primary-darkest: #2c296a;
   --primary-darker: #312e81;
   --primary-dark: #4338ca;
@@ -21,10 +27,10 @@
 }
 
 body {
-  background-color: #e5e5e5;
-  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light);
+  font-family: var(--font);
   font-size: 500;
-  color: #3b3b3b;
+  color: var(--dark);
 }
 
 .container {
