@@ -70,7 +70,7 @@ mountElement.append(accordion);
 const accordions = document.querySelectorAll(".accordion");
 
 // Open accordion item
-const openAccordionItem = (accordionItem) => {
+const openAccordionItem = accordionItem => {
   const body = accordionItem.querySelector(".accordion-item-body");
 
   accordionItem.classList.add("active");
@@ -78,7 +78,7 @@ const openAccordionItem = (accordionItem) => {
 };
 
 // Close accordion item
-const closeAccordionItem = (accordionItem) => {
+const closeAccordionItem = accordionItem => {
   const body = accordionItem.querySelector(".accordion-item-body");
 
   accordionItem.classList.remove("active");
