@@ -64,19 +64,16 @@ const generateAccordionItem = (title, description) => {
 
   // Header click functionality
   itemHeader.addEventListener("click", () => {
-    if (itemBody.style.maxHeight) {
-      closeAccordionItem(item);
-    } else {
-      const allAccordionItems = document.querySelectorAll(".accordion-item");
+    const allAccordionItems = document.querySelectorAll(".accordion-item");
       
-      // Close all accordion items
-      allAccordionItems.forEach(accordionItem => {
+    // Close all accordion items
+    allAccordionItems.forEach(accordionItem => {
+      if (accordionItem === item && !item.classList.contains("active")) {
+        openAccordionItem(accordionItem);
+      } else {
         closeAccordionItem(accordionItem);
-      });
-
-      // Open only this accordion item
-      openAccordionItem(item);
-    }
+      }
+    });
   });
 
   return item;
